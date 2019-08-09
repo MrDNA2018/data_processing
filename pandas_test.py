@@ -4,7 +4,12 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_colwidth', 1000)
 #%%
 df = pd.read_csv('E://source_data/new_demo.csv',encoding='utf-8',engine='python', error_bad_lines=False)
-df_chunk = pd.read_csv('E://source_data/insured_utf-8.csv',encoding = "utf-8", dtype='object',error_bad_lines= False,engine='c')
+
+#%%
+#%%
+file = open('E://source_data/insured.csv', 'r', encoding='utf-8', errors='ignore')
+#%%
+df_chunk = pd.read_csv(file,encoding = "utf-8", dtype='object',error_bad_lines= False,engine='c')
 
 #%%
 # 获取所有的列名

@@ -3,10 +3,17 @@ import pandas as pd
 pd.set_option('display.max_columns', 1000)
 pd.set_option('display.width', 1000)
 pd.set_option('display.max_colwidth', 1000)
-#%%
-last = pd.read_csv('E://source_data/last/last_formate_15.csv',encoding='utf-8',dtype='object',engine='c', error_bad_lines=False)
-#%%
+# %%
+last = pd.read_csv(
+    'E://source_data/last/last_formate_15.csv',
+    encoding='utf-8',
+    dtype='object',
+    engine='c',
+    error_bad_lines=False)
+# %%
 # 处理同一行内的数据缺失补全
+
+
 def testfunc_reportnumber(line):
     # if pd.isna(line['reportornumber']):
     #     if line['reportorname'] == line['linkername']:
@@ -105,33 +112,45 @@ def testfunc_reportnumber(line):
     line['insuredphonelist'] = temp
 
     return line
-#%%
-last = last.apply(testfunc_reportnumber,axis = 1)
 
-#%%
+
+# %%
+last = last.apply(testfunc_reportnumber, axis=1)
+
+# %%
 # 更改列名
-last.rename(columns={'drivers.0.licenseno':'thirdcarlicenseno'},inplace=True)
-last.rename(columns={'drivers.0.drivername':'thirdcardrivername'},inplace=True)
-#%%
-last.rename(columns={'ll_insuredname':'insuredphonelist'},inplace=True)
+last.rename(columns={'drivers.0.licenseno': 'thirdcarlicenseno'}, inplace=True)
+last.rename(
+    columns={
+        'drivers.0.drivername': 'thirdcardrivername'},
+    inplace=True)
+# %%
+last.rename(columns={'ll_insuredname': 'insuredphonelist'}, inplace=True)
 last['insuredphonelist'] = ''
-#%%
-last = last.drop(columns=['insureds.1.insuredname','insureds.1.identifynumber'])
-#%%
+# %%
+last = last.drop(
+    columns=[
+        'insureds.1.insuredname',
+        'insureds.1.identifynumber'])
+# %%
 # 增加一列
 remark = last['phonenumber']
-last.insert(11,'thirdcardriverphone',remark)
-#%%
+last.insert(11, 'thirdcardriverphone', remark)
+# %%
 # 查看非空元素
-last[['insuredphoneno','insureds.0.mobile','insureds.1.mobile']][last['insuredphoneno'].notna()]
+last[['insuredphoneno', 'insureds.0.mobile', 'insureds.1.mobile']
+     ][last['insuredphoneno'].notna()]
 
-#%%
-last['thirdcardriverphone'] =''
-#%%
+# %%
+last['thirdcardriverphone'] = ''
+# %%
 # 获取所有的列名
 column_name_list = []
 for i in last.columns:
     column_name_list.append(i)
 
-#%%
-last.to_csv('E://source_data/last/last_formate_16.csv',header=True,index=False)
+# %%
+last.to_csv(
+    'E://source_data/last/last_formate_16.csv',
+    header=True,
+    index=False)

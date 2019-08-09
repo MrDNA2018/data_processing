@@ -1,4 +1,4 @@
-#%%
+# %%
 # Requires pymongo 3.6.0+
 from pymongo import MongoClient
 
@@ -8,7 +8,7 @@ collection = database["c_out"]
 
 # Created with Studio 3T, the IDE for MongoDB - https://studio3t.com/
 
-query = {"registno" : "RDZA201544520000030555"}
+query = {"registno": "RDZA201544520000030555"}
 
 cursor = collection.find(query).limit(1)
 try:

@@ -1,4 +1,4 @@
-#%%
+# %%
 from pymongo import MongoClient
 
 client = MongoClient("mongodb://192.168.123.64:27017/")
@@ -40,5 +40,5 @@ pipeline = [
 
 cursor = cases.aggregate(
     pipeline,
-    allowDiskUse = False
+    allowDiskUse=False
 )

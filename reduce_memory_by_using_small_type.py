@@ -1,6 +1,6 @@
 
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import numpy as np  # linear algebra
+import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 
 
 def reduce_mem_usage(props):
@@ -44,7 +44,9 @@ def reduce_mem_usage(props):
                     else:
                         props[col] = props[col].astype(np.uint64)
                 else:
-                    if mn > np.iinfo(np.int8).min and mx < np.iinfo(np.int8).max:
+                    if mn > np.iinfo(
+                            np.int8).min and mx < np.iinfo(
+                            np.int8).max:
                         props[col] = props[col].astype(np.int8)
                     elif mn > np.iinfo(np.int16).min and mx < np.iinfo(np.int16).max:
                         props[col] = props[col].astype(np.int16)
@@ -69,17 +71,19 @@ def reduce_mem_usage(props):
     return props, NAlist
 
 
-#%%
-props = pd.read_csv(r"properties_2016.csv")  #The properties dataset
+# %%
+props = pd.read_csv(r"properties_2016.csv")  # The properties dataset
 
-#train = pd.read_csv(r"../input/train_2016_v2.csv")   # The parcelid's with their outcomes
-#samp = pd.read_csv(r"../input/sample_submission.csv")  #The parcelid's for the testset
+# train = pd.read_csv(r"../input/train_2016_v2.csv")   # The parcelid's with their outcomes
+# samp = pd.read_csv(r"../input/sample_submission.csv")  #The parcelid's
+# for the testset
 
-#%%
+# %%
 props, NAlist = reduce_mem_usage(props)
 print("_________________")
 print("")
-print("Warning: the following columns have missing values filled with 'df['column_name'].min() -1': ")
+print(
+    "Warning: the following columns have missing values filled with 'df['column_name'].min() -1': ")
 print("_________________")
 print("")
 print(NAlist)

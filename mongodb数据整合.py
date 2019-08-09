@@ -1,4 +1,4 @@
-#%%
+# %%
 from pymongo import MongoClient
 
 client = MongoClient("mongodb://192.168.123.64:27017/")
@@ -19,20 +19,34 @@ try:
     for doc in cursor:
         registno = doc['registno']
         print("报案号：{}".format(registno))
-        prplregistex_info = prplregistex.find_one({ "registno": registno},no_cursor_timeout=True)
-        repairfee_info = repairfee.find_one({ "registno": registno},no_cursor_timeout=True)
-        prplcitemcar_info = prplcitemcar.find_one({ "registno": registno},no_cursor_timeout=True)
-        lossthirdparty_lossmain_info = lossthirdparty_lossmain.find_one({ "registno": registno},no_cursor_timeout=True)
-        lossthirdparty_info = lossthirdparty.find_one({ "registno": registno},no_cursor_timeout=True)
-        lossmain_info = lossmain.find_one({ "registno": registno},no_cursor_timeout=True)
-        citemkind_info = citemkind.find_one({ "registno": registno},no_cursor_timeout=True)
-        check_info = check.find_one({ "registno": registno},no_cursor_timeout=True)
+        prplregistex_info = prplregistex.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
+        repairfee_info = repairfee.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
+        prplcitemcar_info = prplcitemcar.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
+        lossthirdparty_lossmain_info = lossthirdparty_lossmain.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
+        lossthirdparty_info = lossthirdparty.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
+        lossmain_info = lossmain.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
+        citemkind_info = citemkind.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
+        check_info = check.find_one(
+            {"registno": registno}, no_cursor_timeout=True)
 
-        newvalues = {"$set": {"prplregistex_info": prplregistex_info,"repairfee_info": repairfee_info,"prplcitemcar_info": prplcitemcar_info,
-                              "lossthirdparty_lossmain_info": lossthirdparty_lossmain_info,"lossthirdparty_info": lossthirdparty_info,
-                              "lossmain_info": lossmain_info,"citemkind_info": citemkind_info,"check_info": check_info}}
-        temp.update_one({ "registno": registno}, newvalues)
-
+        newvalues = {
+            "$set": {
+                "prplregistex_info": prplregistex_info,
+                "repairfee_info": repairfee_info,
+                "prplcitemcar_info": prplcitemcar_info,
+                "lossthirdparty_lossmain_info": lossthirdparty_lossmain_info,
+                "lossthirdparty_info": lossthirdparty_info,
+                "lossmain_info": lossmain_info,
+                "citemkind_info": citemkind_info,
+                "check_info": check_info}}
+        temp.update_one({"registno": registno}, newvalues)
 
 
 finally:

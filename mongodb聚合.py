@@ -1,4 +1,4 @@
-#%%
+# %%
 from pymongo import MongoClient
 
 client = MongoClient("mongodb://192.168.123.64:27017/")
@@ -21,31 +21,31 @@ pipeline = [
 
 cursor = collection.aggregate(
     pipeline,
-    allowDiskUse = False
+    allowDiskUse=False
 )
 
-#%%
+# %%
 db.getCollection("main").aggregate(
     [
         {
-            "$lookup" : {
-                "from" : "registex",
-                "localField" : "registno",
-                "foreignField" : "registno",
-                "as" : "registex"
+            "$lookup": {
+                "from": "registex",
+                "localField": "registno",
+                "foreignField": "registno",
+                "as": "registex"
             }
         },
         {
-            "$lookup" : {
-                "from" : "regist",
-                "localField" : "registno",
-                "foreignField" : "registno",
-                "as" : "regist"
+            "$lookup": {
+                "from": "regist",
+                "localField": "registno",
+                "foreignField": "registno",
+                "as": "regist"
             }
         },
         {"$out" 	: "C_b"}
     ],
     {
-        "allowDiskUse" : true
+        "allowDiskUse": true
     }
-);
+)

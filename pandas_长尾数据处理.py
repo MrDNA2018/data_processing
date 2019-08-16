@@ -4,7 +4,7 @@ pd.set_option('display.width', 1000)
 pd.set_option('display.max_colwidth', 1000)
 # %%
 last = pd.read_csv(
-    'E://source_data/last/last_formate_1.csv',
+    'E://source_data/insured.csv',
     encoding='utf-8',
     dtype='object',
     engine='c',
